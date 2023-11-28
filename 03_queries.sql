@@ -116,53 +116,61 @@ INSERT INTO monster
     stats_id,
     health_points)
 VALUES
-    ('Shadow Wraith',
+  (
+    'Shadow Wraith',
     4,
     1,
-    10000),
-    
-    ('Ember Drake',
+    10000
+  ),
+  (
+    'Ember Drake',
     5,
     2,
-    20000),
-
-    ('Spectral Banshee',
+    20000
+  ),
+  (
+    'Spectral Banshee',
     6,
     3,
-    100),
-
-   ('Frost Giant Yeti',
+    100
+  ),
+  (
+    'Frost Giant Yeti',
     7,
     4,
-    5000),
-    
-    ('Chimera Serpent',
+    5000
+  ),
+  (
+    'Chimera Serpent',
     8,
     5,
-    666),
-    
-    ('Ronald McDonald',
+    666
+  ),  
+  (
+    'Ronald McDonald',
     1,
     6,
-    8000);
+    8000
+  );
 
 -- Create Items
 INSERT INTO item (
     name,
     description
   )
-VALUES(
-  'Dirty Stone',
-  'Stone that seems to have been lying in the dirt for quite some time'
-),
-(
-  'Wooden Stick',
-  'Primitive weapon most used for teasing monsters'
-),
-(
-  'Burnt Apple',
-  'Misjudged cooking of an apple has resulted in this poor non eatable fruit'
-);
+VALUES
+  (
+    'Dirty Stone',
+    'Stone that seems to have been lying in the dirt for quite some time'
+  ),
+  (
+    'Wooden Stick',
+    'Primitive weapon most used for teasing monsters'
+  ),
+  (
+    'Burnt Apple',
+    'Misjudged cooking of an apple has resulted in this poor non eatable fruit'
+  );
 
 
 -- Update monster health points
@@ -170,16 +178,7 @@ UPDATE monster
 SET health_points = 10001
 WHERE name = 'Shadow Wraith'; 
 
--- Delete over powered monsters
--- TODO Fråga om safe updates av eller på?
--- DELETE FROM monster
--- WHERE stats_id IN (
---   SELECT stats_id 
---   FROM stats
---   WHERE stats.level > 50
---   AND attack >= 10000
--- );
-
+-- Delete human monsters
 DELETE FROM monster
 WHERE race_id = (
   SELECT race_id
@@ -187,12 +186,8 @@ WHERE race_id = (
   WHERE name = 'Human'
 );
 
-
-
 --            _.------.                        .----.__
 --           /         \_.       ._           /---.__  \
---          |  O    O   |\\___  //|          /       `\ |
---          |  O    O   |\\___  //|          /       `\ |
 --          |  O    O   |\\___  //|          /       `\ |
 --          |  .vvvvv.  | )   `(/ |         | o     o  \|
 --          /  |     |  |/      \ |  /|   ./| .vvvvv.  |\
@@ -203,12 +198,9 @@ WHERE race_id = (
 --       `'   |  _     |  `._/' |   |  \     7        /
 --         _.-'-' `-'-'|  |`-._/   /    \ _ /    .    |
 --    __.-'            \  \   .   / \_.  \ -|_/\/ `--.|_
--- --'                  \  \ |   /    |  |              `-
+--   '                  \  \ |   /    |  |              `-
 --                       \uU \UU/     |  /   
 --
----------------------------------------------------------------------------
-
-
 
 -- Create user
 INSERT INTO user ( 
@@ -233,27 +225,28 @@ INSERT INTO player (
     health_points,
     magic_points     
 )
-VALUES (
+VALUES
+  (
     LAST_INSERT_ID(),
     'John Axmaster Doe',
     56,
     13,
     36,
     33
-),
-(
+  ),
+  (
     LAST_INSERT_ID(),
     'Evil Donkey',
     84,
     25,
     48,
     55
-),
-(
+  ),
+  (
     LAST_INSERT_ID(),
     'Duke Nukem',
     94,
     45,
     52,
     78
-);
+  );
