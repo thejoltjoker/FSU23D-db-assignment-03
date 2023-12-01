@@ -1,5 +1,3 @@
--- Drop database
-DROP DATABASE mmorpg;
 
 -- Create database
 CREATE DATABASE IF NOT EXISTS mmorpg;
