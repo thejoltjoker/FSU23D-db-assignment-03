@@ -1,10 +1,3 @@
--- class
-CREATE TABLE IF NOT EXISTS class(
-  class_id  INT AUTO_INCREMENT,
-  name      VARCHAR(20) UNIQUE,
-  PRIMARY KEY (class_id)
-);
-
 -- Create server
 INSERT INTO server(
   name,
