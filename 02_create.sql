@@ -89,15 +89,6 @@ CREATE TABLE dungeon_item(
   PRIMARY KEY (dungeon_item_id)
 );
 
--- dungeon_monster
-CREATE TABLE dungeon_monster(
-  dungeon_monster_id  INT AUTO_INCREMENT,
-  dungeon_id          INT,
-  monster_id          INT,
-  FOREIGN KEY (dungeon_id) REFERENCES dungeon(dungeon_id),
-  FOREIGN KEY (monster_id) REFERENCES monster(monster_id),
-  PRIMARY KEY (dungeon_monster_id)
-);
 
 -- player
 CREATE TABLE player(
