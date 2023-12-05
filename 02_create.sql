@@ -1,4 +1,7 @@
 
+-- Drop database if present
+DROP DATABASE IF EXISTS mmorpg;
+
 -- Create database
 CREATE DATABASE IF NOT EXISTS mmorpg;
 
@@ -73,22 +76,33 @@ CREATE TABLE monster(
   name          VARCHAR(30) UNIQUE,
   race_id       INT,
   stats_id      INT,
-  health_points SMALLINT  UNSIGNED,
-  FOREIGN KEY (race_id)   REFERENCES race(race_id),
-  FOREIGN KEY (stats_id)  REFERENCES stats(stats_id),
+  dungeon_id    INT,
+  health_points SMALLINT    UNSIGNED,
+  FOREIGN KEY (race_id)     REFERENCES race(race_id),
+  FOREIGN KEY (stats_id)    REFERENCES stats(stats_id),
+  FOREIGN KEY (dungeon_id)  REFERENCES dungeon(dungeon_id),
   PRIMARY KEY (monster_id)
 );
 
 -- dungeon_item
 CREATE TABLE dungeon_item(
-  dungeon_item_id INT AUTO_INCREMENT,
   dungeon_id      INT,
   item_id         INT,
+  quantity        MEDIUMINT UNSIGNED,
   FOREIGN KEY (dungeon_id)  REFERENCES dungeon(dungeon_id),
   FOREIGN KEY (item_id)     REFERENCES item(item_id),
-  PRIMARY KEY (dungeon_item_id)
+  PRIMARY KEY (dungeon_id, item_id)
 );
 
+-- monster_item
+CREATE TABLE monster_item(
+  monster_id      INT,
+  item_id         INT,
+  quantity        MEDIUMINT UNSIGNED,
+  FOREIGN KEY (monster_id)  REFERENCES monster(monster_id),
+  FOREIGN KEY (item_id)     REFERENCES item(item_id),
+  PRIMARY KEY (monster_id, item_id)
+ );
 
 -- player
 CREATE TABLE player(
@@ -113,11 +127,11 @@ CREATE TABLE player(
 
 -- player_item
 CREATE TABLE player_item(
-  player_item_id  INT AUTO_INCREMENT,
   item_id         INT,
   player_id       INT,
+  quantity        MEDIUMINT UNSIGNED,
   FOREIGN KEY (item_id)   REFERENCES item(item_id),
   FOREIGN KEY (player_id) REFERENCES player(player_id),
-  PRIMARY KEY (player_item_id)
+  PRIMARY KEY (item_id, player_id)
 );
 
